@@ -19,8 +19,8 @@ Function Onboard-DefenderForEndpoint {
     Write-Host "Onboarding device to Microsoft Defender for Endpoint..."
     
     # Web URL to download the Defender for Endpoint onboarding script
-    $OnboardingScriptUrl = "https://example.com/path/to/DefenderOnboardingScript.bat"
-    $OnboardingScriptPath = "$env:TEMP\DefenderOnboardingScript.bat"
+    $OnboardingScriptUrl = "https://raw.githubusercontent.com/christopherkelley89/IntuneDeployment/refs/heads/main/DefenderATPOnboarding.cmd"
+    $OnboardingScriptPath = "$env:TEMP\DefenderATPOnboarding.cmd"
 
     try {
         Write-Host "Downloading onboarding script from $OnboardingScriptUrl..."
