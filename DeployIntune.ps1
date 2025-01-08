@@ -10,7 +10,7 @@ Connect-MgGraph -Scopes "DeviceManagementConfiguration.ReadWrite.All, DeviceMana
 # Function to onboard the device to Intune
 Function Onboard-DeviceToIntune {
     Write-Host "Enrolling device to Intune..."
-    Start-Process -FilePath "ms-settings:workplace" -ArgumentList "" -Wait
+    Start-Process -FilePath "ms-settings:workplace" -Wait
     Write-Host "Ensure you use the appropriate Azure AD credentials to onboard the device to Intune."
 }
 
@@ -60,7 +60,7 @@ Function Create-SecureCompliancePolicy {
     }
 
     # Create compliance policy
-    Invoke-MgGraphRequest -Method POST -Uri "/deviceManagement/deviceCompliancePolicies" -Body ($compliancePolicy | ConvertTo-Json -Depth 10)
+    Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/deviceManagement/deviceCompliancePolicies" -Body ($compliancePolicy | ConvertTo-Json -Depth 10)
     Write-Host "Secure compliance policy created."
 }
 
@@ -98,7 +98,7 @@ Function Create-SecureConfigurationProfile {
     }
 
     # Create configuration profile
-    Invoke-MgGraphRequest -Method POST -Uri "/deviceManagement/deviceConfigurations" -Body ($configurationProfile | ConvertTo-Json -Depth 10)
+    Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/deviceManagement/deviceConfigurations" -Body ($configurationProfile | ConvertTo-Json -Depth 10)
     Write-Host "Secure configuration profile created."
 }
 
@@ -106,14 +106,21 @@ Function Create-SecureConfigurationProfile {
 Function Apply-SecurityBaseline {
     Write-Host "Applying Microsoft Security Baseline..."
 
+    # Get the correct templateId for the Microsoft Security Baseline
+    $templateId = (Get-MgDeviceManagementTemplate | Where-Object { $_.displayName -like "*Security Baseline*" }).id
+
+    if (-not $templateId) {
+        Write-Error "Security Baseline template not found."
+        return
+    }
+
     $baselineTemplate = @{
-        "@odata.type"        = "#microsoft.graph.securityBaseline";
-        displayName          = "Security Baseline for Secure Environment";
-        templateId           = "d1c84e61-9450-4c9d-8fb1-79dd22d55a91"; # Example template ID for Microsoft Security Baseline
+        "@odata.type" = "#microsoft.graph.securityBaseline";
+        displayName    = "Security Baseline for Secure Environment";
     }
 
     # Assign baseline
-    Invoke-MgGraphRequest -Method POST -Uri "/deviceManagement/templates/{templateId}/assign" -Body ($baselineTemplate | ConvertTo-Json -Depth 10)
+    Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/deviceManagement/templates/$templateId/assign" -Body ($baselineTemplate | ConvertTo-Json -Depth 10)
     Write-Host "Microsoft Security Baseline applied."
 }
 
