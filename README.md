@@ -21,7 +21,7 @@ User Confirmation:
 
 ### Registry Modifications:
 
-- Configures registry keys related to:
+Configures registry keys related to:
 - Latency settings.
 - Data collection policies.
 - WMI security settings.
