@@ -1,7 +1,8 @@
 # Intune Baseline & Defender ATP onboarding
-Key Features
 
-## Purpose:
+## Key Features
+
+### Purpose:
 
 Onboards 1-10 machines to MDE services for security and compliance.
 Ensures the machine appears in the MDE portal within 5–30 minutes, depending on connectivity and power state.
