@@ -8,7 +8,7 @@ Ensures the machine appears in the MDE portal within 5–30 minutes, depending o
 
 ## Scope:
 
--Optimized for individual machine onboarding, not intended for large-scale deployment.
+- Optimized for individual machine onboarding, not intended for large-scale deployment.
 Provides troubleshooting guidance and error handling mechanisms.
 User Confirmation:
 
