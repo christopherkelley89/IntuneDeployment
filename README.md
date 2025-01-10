@@ -52,10 +52,14 @@ How to Use It
 - Follow the prompts to confirm and proceed with onboarding.
 
 Limitations
-- Designed for individual use, not for mass deployment and further changes will be made to also deploy a baseline configuration policy for intune and defender portal and verify Security portal and Intune are linked correctly 
+- Designed for individual use, not for mass deployment. 
 - Requires manual confirmation and specific configurations tailored to the organization (e.g., organization ID, data center).
 
-
+## Future Changes
+- Further changes will be made to also deploy baseline configuration policies within Intune for various devices (windows, macOS, iOS, android) 
+- Ensure the defender portal and Endpoint manager link is connected and working correctly by creating a defender endpoint response policy first which enables the ability to link both endpoint manager and Microsoft security portal
+- Will use Microsoft Graph API and will have provided documentation on Azure App registration setup so proper permissions are established
+- Prompt user for tenant ID, APPID, and client secret to hook into tenant
 
 
 
