@@ -1,4 +1,4 @@
-#Testing - Intune Baseline + Defender ATP onboarding
+# Intune Baseline & Defender ATP onboarding
 Key Features
 
 ## Purpose:
